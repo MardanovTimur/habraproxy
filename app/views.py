@@ -19,10 +19,7 @@ async def proxy_view(request):
             if 'image' in content_type or '.svg' in request.raw_path:
                 return web.Response(body=await resp.read(), content_type=content_type)
 
-            text = await resp.text()
-
-            text = await handle_response(text)
-
+            text = await handle_response(await resp.text())
             return web.Response(body=text.encode('utf-8', 'ignore'),
                                 status=resp.status,
                                 headers=headers)
