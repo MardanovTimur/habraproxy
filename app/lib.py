@@ -1,6 +1,14 @@
 import asyncio
 from lxml import html, etree
 
+HOST = 'http://localhost:8000'
+
+HABR_HOSTS = (
+    'https://habr.com',
+    'http://habr.com',
+    # ...
+)
+
 POST_DIV_SELECTOR = '//div[@class="post__text post__text-html js-mediator-article"]'
 
 async def replace_text(selector):
@@ -23,4 +31,7 @@ async def handle_response(text: str) -> str:
     [await replace_text(sel) for sel in main_page_selections]
 
 
-    return html.tostring(html_selection, pretty_print=True, encoding='unicode')
+    template = html.tostring(html_selection, pretty_print=True, encoding='unicode')
+    for host in HABR_HOSTS:
+        template = template.replace(host, HOST)
+    return template
