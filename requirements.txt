@@ -20,7 +20,7 @@ MarkupSafe==1.1.1
 multidict==4.5.2
 pycares==3.0.0
 pycparser==2.19
-Pygments==2.4.2
+Pygments==2.7.4
 typing==3.6.6
 typing-extensions==3.7.2
 watchgod==0.4
